@@ -95,6 +95,7 @@ public class NewJFrame extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         crearArchivo();
+        
         //pasamos header
         tableEstudiantes.setModel(modelo);
         

@@ -8,6 +8,7 @@ import java.io.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -63,26 +64,29 @@ public class NewJFrame extends javax.swing.JFrame {
         }
     }
      
+     
+    //BufferedReader se usa para leer de manera eficiente un archivo
+
     public void leerArchiv(){
         try {
             array.clear(); //limpiamos el array para cargar datos
             FileReader file = new FileReader("datos.txt"); //abre el archivo para lectura
             BufferedReader reader = new BufferedReader(file);
             
-            String linea = reader.readLine();
+            String linea;
             
-            while(linea != null){
+            while((linea = reader.readLine()) != null){
                 System.out.println(linea);
             }
             
         } catch (IOException e) {
-            
+            System.out.println("error al mostar lineas");
         }
     }
     
-     
-    //BufferedReader se usa para leer de manera eficiente un archivo
-   
+     //ponerle header a la tabla
+    String[] header = {"Nombre", "Edad"};
+    DefaultTableModel modelo = new DefaultTableModel(null, header);
     
     /**
      * Creates new form NewJFrame
@@ -90,8 +94,10 @@ public class NewJFrame extends javax.swing.JFrame {
     public NewJFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
         crearArchivo();
+        //pasamos header
+        tableEstudiantes.setModel(modelo);
+        
         
     }
 

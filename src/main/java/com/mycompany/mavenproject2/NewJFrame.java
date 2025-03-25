@@ -7,6 +7,7 @@ package com.mycompany.mavenproject2;
 import java.io.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,6 +33,8 @@ public class NewJFrame extends javax.swing.JFrame {
         } catch (IOException e) {
             System.out.println("Error al crear el archivo.");
         }
+        
+        leerArchiv();
     }
     
     //FileWritter se usa para escribir en un archivo
@@ -53,6 +56,7 @@ public class NewJFrame extends javax.swing.JFrame {
             System.out.println("Se agrego texto al archivo");
             txtNombre.setText("");
             txtEdad.setText("");
+            JOptionPane.showMessageDialog(null, "se agrego datos al achivo");
             
         }catch(IOException e){
             System.out.println("error al agregar el texto");
@@ -65,8 +69,11 @@ public class NewJFrame extends javax.swing.JFrame {
             FileReader file = new FileReader("datos.txt"); //abre el archivo para lectura
             BufferedReader reader = new BufferedReader(file);
             
+            String linea = reader.readLine();
             
-            
+            while(linea != null){
+                System.out.println(linea);
+            }
             
         } catch (IOException e) {
             

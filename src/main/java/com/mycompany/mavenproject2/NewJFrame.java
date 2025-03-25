@@ -41,6 +41,8 @@ public class NewJFrame extends javax.swing.JFrame {
             
             String nombre = txtNombre.getText();
             int edad = Integer.parseInt(txtEdad.getText());
+            
+       
             String str = nombre+"-"+edad;
             
             FileWriter writer = new FileWriter("datos.txt", true); //con el true ya no sobreescribe
@@ -49,6 +51,8 @@ public class NewJFrame extends javax.swing.JFrame {
             
             writer.close();
             System.out.println("Se agrego texto al archivo");
+            txtNombre.setText("");
+            txtEdad.setText("");
             
         }catch(IOException e){
             System.out.println("error al agregar el texto");

@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class NewJFrame extends javax.swing.JFrame {
 
     //variables
-    public ArrayList<String> array = new ArrayList();
+    public ArrayList<String[]> array = new ArrayList();
     
     private void crearArchivo() {
         // File file = new File("datos.txt");
@@ -58,6 +58,7 @@ public class NewJFrame extends javax.swing.JFrame {
             txtNombre.setText("");
             txtEdad.setText("");
             JOptionPane.showMessageDialog(null, "se agrego datos al achivo");
+            leerArchiv();
             
         }catch(IOException e){
             System.out.println("error al agregar el texto");
@@ -73,12 +74,17 @@ public class NewJFrame extends javax.swing.JFrame {
             FileReader file = new FileReader("datos.txt"); //abre el archivo para lectura
             BufferedReader reader = new BufferedReader(file);
             
-            String linea;
+            modelo.setRowCount(0); //limpiar la tabla
             
+            String linea;
             while((linea = reader.readLine()) != null){
-                System.out.println(linea);
+                String[] datosLinea = linea.split("-");
+                array.add(datosLinea);
             }
             
+            for(String[] lineaDatos: array){
+                modelo.addRow(lineaDatos);
+            }
         } catch (IOException e) {
             System.out.println("error al mostar lineas");
         }
